@@ -46,10 +46,12 @@ class SourceController {
         let data = { res: res, ok: 1 };
         ctx.body = data;
       } else {
-        ctx.body = 'Tips[no res]';
+        let data = { res: 'Tips[no res]', ok: -1 };
+        ctx.body = data;
       }
     }).catch(e => {
-      ctx.body = 'Tips[error]';
+      let data = { res: 'Tips[error]', ok: 0 };
+      ctx.body = data;
     })
   }
 }
