@@ -17,9 +17,9 @@ class SourceController {
 
   // 通过id查询数据
   async queryData(ctx, next) {
-    let i = ctx.query.id;
+    let i = ctx.query.uid;
 
-    let sql = `SELECT u_id FROM user_copy1 WHERE u_id = "${i}";`;
+    let sql = `SELECT * FROM user_copy1 WHERE u_id = "${i}";`;
     console.log(sql);
 
     await db.query(sql).then(res => {
@@ -39,7 +39,7 @@ class SourceController {
     let b = ctx.query.b;
     let e = ctx.query.e;
 
-    let sql = `SELECT * FROM user_copy1 LIMIT ${b - 1}, ${e - b + 1};`
+    let sql = `SELECT u_id, u_name, u_head FROM user_copy1 LIMIT ${b - 1}, ${e - b + 1};`
 
     await db.query(sql).then(res => {
       if (res && res.length > 0) {
