@@ -13,6 +13,7 @@ router
   .get('/api/source/all', sourcectrl.getAllData)
   .get('/api/source/query', sourcectrl.queryData)
   .get('/api/source/multiple', sourcectrl.queryMultiple)
+  .get('/api/source/search', sourcectrl.searchByName)
 
   // 验证码模块
   .get('/api/sms/getSms', smsctrl.getSms)

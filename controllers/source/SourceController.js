@@ -54,6 +54,27 @@ class SourceController {
       ctx.body = data;
     })
   }
+
+  // 查询指定姓名的数据
+  async searchByName(ctx, next) {
+    let n = ctx.query.name;
+
+    let sql = `SELECT u_id, u_name, u_head FROM user_copy1 WHERE u_name LIKE '${n}';`
+
+    await db.query(sql).then(res => {
+      if (res && res.length > 0) {
+        let data = { res: res, ok: 1 };
+        ctx.body = data;
+      } else {
+        let data = { res: 'Tips[no res]', ok: -1 };
+        ctx.body = data;
+      }
+    }).catch(e => {
+      let data = { res: 'Tips[error]', ok: 0 };
+      ctx.body = data;
+    })
+  }
+
 }
 
 module.exports = new SourceController();
